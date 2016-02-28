@@ -3,14 +3,17 @@
 </head>
 
 <body>
-    {{> navbar}}
-<div class="jumbotron">
-  <h1>Rolling Playlist</h1> 
-  <p>Welcome to the rolling playlist.</p> 
-</div>  
-
+  {{> navbar}}
+  {{> banner}}
   {{> playList}}
 </body>
+
+<template name="banner">
+  <div class="container-fluid jumbotron">
+    <h1>Rolling Playlist</h1> 
+    <p>Welcome to the rolling playlist.</p> 
+  </div>  
+</template>
 
 <template name="playList">
   {{#each playListItem}}
