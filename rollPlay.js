@@ -1,7 +1,17 @@
 //Creates the mongo db collection (similar to a table in SQL)
 // It's referred to playlists in mongo, but within the js files
 // variable reference is playList.
-playList = new Mongo.Collection("playlists");
+playList = new Mongo.Collection("playlists", {
+  transform: function (doc) { 
+    //var secondsDuration = doc.duration;
+    //var d = moment.duration(secondsDuration, 'seconds');
+    //var mins = Math.floor(d.asMinutes());   
+    //var secs = Math.floor(d.asSeconds()) - mins*60;
+    var dur =moment.duration(doc.duration, 's');
+    doc.durationPretty = moment(dur._data).format('mm[:]ss ');
+    return doc;
+  }  
+});
 
 // ------------------------
 // CLIENT ONLY CODE
