@@ -29,6 +29,8 @@ if (Meteor.isClient) {
       // to the favorite button.  Simply update to the 
       // db when the event occurs. 
       console.log("Clicked the favorite button!");
+      playList.update( {_id: this._id  },
+                      {$set: {favorite:true} });
     }
   });
 }
