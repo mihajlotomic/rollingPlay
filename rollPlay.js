@@ -3,22 +3,41 @@
 // variable reference is playList.
 playList = new Mongo.Collection("playlists");
 
+// ------------------------
+// CLIENT ONLY CODE
+// ------------------------
 if (Meteor.isClient) {
-
+  
+  
+  // ------------------------
+  // HELPER FUNCTIONS
+  // ------------------------
   Template.playList.helpers({
     playListItem: function () {
       return playList.find({});
     }
   });
 
-  Template.playList.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  
+    
+  // ------------------------
+  // EVENT FUNCTIONS
+  // ------------------------
+  Template.playListData.events({
+    'click .js-fav-button': function () {
+      // Place holder for logging the number of clicks
+      // to the favorite button.  Simply update to the 
+      // db when the event occurs. 
+      console.log("Clicked the favorite button!");
     }
   });
 }
 
+
+
+// ------------------------
+// SERVER ONLY CODE
+// ------------------------
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // Populate the db with some default code
@@ -27,6 +46,7 @@ if (Meteor.isServer) {
         playList.insert({
             title:"Mozart 1 ",             
             description:"This is the first liturgical piece by Mozart.", 
+            duration:123, 
             createdOn:new Date()
         });
     } 

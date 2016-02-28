@@ -19,8 +19,9 @@
 <template name="playListData">
  <div class="container">  
     <ul class="list-group">
-      <li class="list-group-item">{{title}}</li>
-      <li class="list-group-item">{{description}}</li>
+      <li class="list-group-item active">{{title}}</li>
+      <li class="list-group-item">{{description}}   Duration: {{duration}}</li>
+      <button type="button" class="btn btn-info js-fav-button">Favorite</button>
    </ul> 
    
   </div>
