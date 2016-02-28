@@ -1,14 +1,17 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+//Creates the mongo db collection (similar to a table in SQL)
+// It's referred to playlists in mongo, but within the js files
+// variable reference is playList.
+playList = new Mongo.Collection("playlists");
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+if (Meteor.isClient) {
+
+  Template.playList.helpers({
+    playListItem: function () {
+      return playList.find({});
     }
   });
 
-  Template.hello.events({
+  Template.playList.events({
     'click button': function () {
       // increment the counter when button is clicked
       Session.set('counter', Session.get('counter') + 1);
@@ -18,6 +21,14 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
-  });
+    // Populate the db with some default code
+    if (!playList.findOne()){
+        console.log("No playlist contents yet. Creating starter data.");
+        playList.insert({
+            title:"Mozart 1 ",             
+            description:"This is the first liturgical piece by Mozart.", 
+            createdOn:new Date()
+        });
+    } 
+  } );
 }

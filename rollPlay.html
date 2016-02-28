@@ -3,12 +3,25 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+<div class="jumbotron">
+  <h1>Rolling Playlist</h1> 
+  <p>Welcome to the rolling playlist.</p> 
+</div>
+  {{> playList}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="playList">
+  {{#each playListItem}}
+    {{>playListData}}
+  {{/each}}
+</template>
+
+<template name="playListData">
+ <div class="container">  
+    <ul class="list-group">
+      <li class="list-group-item">{{title}}</li>
+      <li class="list-group-item">{{description}}</li>
+   </ul> 
+   
+  </div>
 </template>
